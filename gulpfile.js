@@ -80,16 +80,17 @@ var browserSync = require('browser-sync'); // Reload the browser on file changes
 // });
 
 // // Serve application
-// gulp.task('serve', ['styles', 'html', 'scripts', 'images', 'jshint', 'size'], function() {
-//   browserSync.init({
-//     server: {
-//       baseDir: './',
-//     },
-//   });
-// });
+gulp.task('serve', function() {
+  browserSync.init({
+    server: {
+      baseDir: './',
+    },
+  });
+});
 
 // Run all Gulp tasks and serve application
-gulp.task('default', function() {
-  gulp.watch('./css/**/*.css',browserSync.reload);
-  gulp.watch('./js/**/*.js', browserSync.reload);
+gulp.task('default',['serve'], function() {
+  gulp.watch('./**/*.css',browserSync.reload);
+  gulp.watch('./**/*.js', browserSync.reload);
+  gulp.watch('./**/*.html', browserSync.reload);
 });

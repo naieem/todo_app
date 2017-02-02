@@ -1,0 +1,98 @@
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+li {
+    background-color: gray;
+    float: left;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    color: #fff;
+}
+
+a {}
+
+.btn {}
+
+.container {
+    display: block;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.wrap {}
+
+.row {
+    float: left;
+    width: 100%;
+}
+
+.content {}
+
+.text-content {
+    float: left;
+    width: 80%;
+}
+
+.actions {
+    float: left;
+    width: 20%;
+    margin-top: 30px;
+}
+
+.title {
+	text-transform: uppercase;
+	color: #000;
+	font-weight: bold;
+	/*text-decoration: line-through;*/
+}
+
+.description {}
+
+
+input[type='text'] {
+    width: 100%;
+    background-color: #ececec;
+    border: none;
+    padding: 10px;
+}
+
+/*  New item adding form design */
+#add_new_element{
+	display: none;
+}
+.add_new_element{
+	float: left;
+	width: 100%;
+	border: 1px solid #ececec;
+	padding: 10px;
+	margin: 20px 0;
+}
+.add_new_element input,.add_new_element textarea{
+	padding: 10px 0;
+	margin: 10px 0;
+	display: block;
+}
+.add_new_element input{
+}
+.add_new_element textarea{
+	width: 100%;
+	padding: 10px 0;
+}
+.add_element{
+	float: right;
+}
+.cancel_modal{}
+.add_new_element input.submit_button{
+	padding: 10px;
+}
+#error_log{
+	float: left;
+	color: red;
+	width: 90%;
+	padding: 10px;
+	margin: 10px 0;
+}
