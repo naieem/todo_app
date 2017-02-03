@@ -1,7 +1,6 @@
 (function(window) {
     'use strict';
 
-
     if (localStorage.getItem("list") !== null) {
         var list = JSON.parse(localStorage.getItem("list"));
     } else {
@@ -12,7 +11,6 @@
     var frm = document.getElementById(config.add_frm_id);
     var add_form_error_log = document.getElementById(config.add_form_error_log);
     var filter_text_id = document.getElementById(config.filter_id);
-    // var statusRadio = document.querySelector('input[name="' + config.itemStatus + '"]:checked');
 
     var APP = {
         list: list,
@@ -30,7 +28,7 @@
         showAll: showAll,
         dynamicSort:dynamicSort
     };
-    window.APP = APP;
+    window.APP=APP;
     APP.init();
 
     function init() {
@@ -127,42 +125,9 @@
                 this.list.splice(i, 1);
             }
             localStorage.setItem("list", JSON.stringify(this.list));
-            this.setList();
+            this.init();
         }
     }
-
-    // function filter() {
-    //     var filter_val = filter_text_id.value;
-    //     var text = '';
-    //     for (var i = 0; i < this.list.length; i++) {
-    //         if (this.list[i].done) {
-    //             status = "checked='checked'";
-    //         } else {
-    //             status = "";
-    //         }
-    //         var title = this.list[i].title;
-    //         var description = this.list[i].description;
-    //         var pattern = new RegExp(filter_val, "gi");
-    //         var title_match = title.match(pattern);
-    //         var description_match = description.match(pattern);
-    //         if (title_match != null || description_match != null) {
-    //             text += '<li>' +
-    //                 '<div class="text-content">' +
-    //                 '<p class="title">' + this.list[i].title + '</p>' +
-    //                 '<p class="description">' + this.list[i].description + '</p>' +
-    //                 '</div>' +
-    //                 '<div class="actions">' +
-    //                 '<input type="checkbox" name="done" ' + status + ' value="0">' +
-    //                 '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
-    //                 '</div>' +
-    //                 '</li>';
-    //         } else {
-    //             text += "";
-    //         }
-
-    //         containerID.innerHTML = text;
-    //     }
-    // }
 
     function openModal() {
         modal.style.display = "block";
@@ -188,7 +153,7 @@
             }
         }
         localStorage.setItem("list", JSON.stringify(this.list));
-        this.setList();
+        this.init();
     }
 
     function showDone() {
