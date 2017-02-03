@@ -1,3 +1,11 @@
+body {
+    background-color: #935d8c;
+    background-image: url(../img/overlay.png), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url(../img/overlay.png), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url(../img/overlay.png), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url(../img/overlay.png), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+}
+
 ul {
     margin: 0;
     padding: 0;
@@ -5,23 +13,26 @@ ul {
 }
 
 li {
-    background-color: gray;
+    background-color: #fff;
     float: left;
     width: 100%;
-    padding: 10px;
+    padding: 0 10px;
     margin: 10px 0;
-    color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    color: #000;
 }
 
 a {}
 
 .btn {}
 
-.header{
-        background-color: #66ff33;
+.header {
+    background-color: #66ff33;
     text-align: center;
     padding: 10px;
 }
+
 .container {
     display: block;
     width: 75%;
@@ -33,10 +44,11 @@ a {}
 .row {
     float: left;
     width: 100%;
+    padding: 20px 0;
 }
 
 .content {
-    width: 95%;
+    width: 98%;
 }
 
 .text-content {
@@ -48,96 +60,117 @@ a {}
     float: left;
     width: 20%;
     margin-top: 30px;
+    position: relative;
 }
 
 .title {
-	text-transform: uppercase;
-	color: #000;
-	font-weight: bold;
-	/*text-decoration: line-through;*/
+    text-transform: uppercase;
+    color: #000;
+    font-weight: bold;
+    /*text-decoration: line-through;*/
 }
 
 .description {}
 
-
 input[type='text'] {
-    width: 90%;
+    width: 100%;
     background-color: #ececec;
     border: none;
     padding: 10px;
 }
 
+
 /*  New item adding form design */
+
+
 /*#add_new_element{
-	display: none;
+    display: none;
 }*/
-.add_new_element{
-	float: left;
-	width: 90%;
-	border: 1px solid #ececec;
-	padding: 10px;
-	margin: 20px 0;
+
+.add_new_element {
+    width: 90%;
+    border: 1px solid #ececec;
+    padding: 10px 10px 80px;
+    margin: 20px auto;
 }
-.add_new_element input,.add_new_element textarea{
-	padding: 10px 0;
-	margin: 10px 0;
-	display: block;
-}
-.add_new_element input{
+
+.frm_container {}
+
+.add_new_element input[type='text'],
+.add_new_element textarea {
     padding: 10px 20px;
+    margin: 10px 0;
+    display: block;
+    width: 90%;
 }
-.add_new_element textarea{
-	width: 90%;
-	padding: 10px 20px;
+
+.add_new_element input {
+    padding: 10px 0px;
 }
-.add_element{
-	float: right;
+
+.add_element {
+    float: right;
 }
-.cancel_modal{
+
+.cancel_modal {
     float: left;
 }
-.add_new_element input.submit_button{
-	padding: 10px;
+
+.add_new_element input.submit_button {
+    padding: 10px 25px;
+    background: wheat;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
 }
-#error_log{
-	float: left;
-	color: red;
-	width: 90%;
-	padding: 10px;
-	margin: 10px 0;
+
+#error_log {
+    color: red;
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
     display: none;
 }
-.list-container{
-    
-}
- #filter{
-    width: 130px;
+
+.list-container {}
+
+#filter {
+    width: 95%;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
 
-/* When the input field gets focus, change its width to 100% */
-#filter:focus {
-    width: 95%;
-}
 
-/* Modal Styling */
-/* The Modal (background) */
+/*#filter:focus {
+    width: 95%;
+}*/
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
+
 /* Modal Content */
+
 .modal-content {
     position: relative;
     background-color: #fefefe;
@@ -145,25 +178,41 @@ input[type='text'] {
     padding: 0;
     border: 1px solid #888;
     width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
 }
 
+
 /* Add Animation */
+
 @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
 @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
+
 /* The Close Button */
+
 .close {
     color: white;
     float: right;
@@ -184,10 +233,148 @@ input[type='text'] {
     color: white;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {
+    padding: 2px 0px;
+    float: left;
+    width: 100%;
+    background: #fff;
+}
 
 .modal-footer {
     padding: 2px 16px;
     background-color: #5cb85c;
     color: white;
+}
+
+
+/* Buttons */
+
+.buttons {
+    display: inline-block;
+    background: #eeeeee;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #eeeeee));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #eeeeee 0%, #eeeeee 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #eeeeee 0%, #eeeeee 100%);
+    /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #eeeeee 0%, #eeeeee 100%);
+    /* IE10+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee', GradientType=0);
+    /* IE6-9 */
+    background: linear-gradient(top, #eeeeee 0%, #eeeeee 100%);
+    /* W3C */
+    border: 1px solid #a1a1a1;
+    margin: 0.5em;
+    font: bold .6em/2em Arial, Helvetica;
+    text-decoration: none;
+    color: #333;
+    border-radius: .2em;
+}
+
+.buttons:before {
+    float: left;
+    width: 1em;
+    text-align: center;
+    font-size: 1.7em;
+    padding: 0 .2em;
+    pointer-events: none;
+}
+
+.delete:before {
+    content: "\2718";
+}
+
+.add {
+    padding: 6px 30px;
+    font-size: 20px;
+}
+
+.add:before {
+    content: "\271A";
+}
+
+.status {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    margin: 10px 0 30px;
+}
+
+input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    width: 84px;
+}
+
+input[type="radio"] + label {
+    color: #000;
+}
+
+input[type="radio"] + label span {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin: -2px 10px 0 0;
+    vertical-align: middle;
+    background: url(../img/check_radio_sheet.png) -50px top no-repeat;
+    cursor: pointer;
+    background-size: cover;
+}
+
+input[type="radio"]:checked + label span {
+    background: url(../img/check_radio_sheet.png) -75px top no-repeat;
+    background-size: cover;
+}
+
+.status_wrapper {
+    text-align: center;
+}
+
+.status_wrapper h2 {
+    padding: 5px;
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
+}
+
+input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 2px;
+    z-index: 999999999;
+}
+
+input[type="checkbox"] + label {
+    color: #000;
+    position: relative;
+    top: -10px;
+}
+
+input[type="checkbox"] + label span {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin: -2px 10px 0 0;
+    vertical-align: middle;
+    background: url(../img/check_radio_sheet.png) 0px top no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label span {
+    background: url(../img/check_radio_sheet.png) -25px top no-repeat;
+    background-size: cover;
+}
+
+.filter_data h2 {
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
 }

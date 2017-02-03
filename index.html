@@ -9,29 +9,50 @@
 <body>
     <div class="container">
         <div class="wrap">
+            <!-- header -->
             <div class="row">
                 <div class="header">
                     <h1>ToDo Application</h1>
                 </div>
             </div>
+            <!-- main container -->
             <div class="row list-container">
-                <a class="btn" href="#" onclick="APP.openModal();return false;">Add New</a>
-                <form>
-                    <label>Search</label>
-                    <br>
-                    <input type="text" name="filter" id="filter" onkeyup="APP.filter()">
+                <!-- Adding new item -->
+                <a class="add buttons" href="#" onclick="APP.openModal();return false;" title="Add New"></a>
+                <!-- filter form -->
+                <form class="filter_data">
+                    <h2>Search</h2>
+                    <input type="text" name="filter" id="filter" onkeyup="APP.setList()">
                 </form>
+                <!-- content area -->
                 <div class="content">
+                    <!-- status changing content -->
+                    <div class="status_wrapper">
+                        <h2>Status</h2>
+                        <div class="status">
+                            <input type="radio" name="status" onchange="APP.setList();" value="all" checked="checked" />
+                            <label><span></span>All</label>
+                        </div>
+                        <div class="status">
+                            <input type="radio" name="status" onchange="APP.setList();" value="done" />
+                            <label><span></span>Done</label>
+                        </div>
+                        <div class="status">
+                            <input type="radio" name="status" onchange="APP.setList();" value="undone" />
+                            <label><span></span>Undone</label>
+                        </div>
+                    </div>
+                    <!--list will appear here -->
                     <ul id="to_list">
                     </ul>
                 </div>
+                <!-- footer -->
                 <div class="row">
                     <div class="footer">
                     </div>
                 </div>
             </div>
             <!-- Modal-->
-            <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
                 <div class="modal-content">
@@ -40,18 +61,17 @@
                         <h2>Add new Item</h2>
                     </div>
                     <div class="modal-body">
-                        <form name="add_frm" class="add_new_element" id="add_new_element" onsubmit="APP.addItem();return false;">
-                            <span id="error_log"></span>
-                            <label>Title</label>
-                            <input type="text" name="title" placeholder="Title">
-                            <label>Description</label>
-                            <textarea name="description" placeholder="Description"></textarea>
-                            <input type="submit" name="submit" class="add_element submit_button" value="Add">
-                            <input type="submit" name="cancel" class="cancel_modal submit_button" onclick="APP.hideModal();return false;" value="Cancel">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <h3>Modal Footer</h3>
+                        <div class="frm_container">
+                            <form name="add_frm" class="add_new_element" id="add_new_element" onsubmit="APP.addItem();return false;">
+                                <span id="error_log"></span>
+                                <label>Title</label>
+                                <input type="text" name="title" placeholder="Title">
+                                <label>Description</label>
+                                <textarea name="description" placeholder="Description"></textarea>
+                                <input type="submit" name="submit" class="add_element submit_button" value="Add">
+                                <input type="submit" name="cancel" class="cancel_modal submit_button" onclick="APP.hideModal();return false;" value="Cancel">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

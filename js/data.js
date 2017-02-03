@@ -4,7 +4,7 @@
         list: [{
             'id': 1,
             'title': "title1",
-            'description': "dummy descriptions 1",
+            'description': "dummy descriptions 1dummy descriptions 1dummy descriptions 1dummy descriptions 1dummy descriptions 1dummy descriptions 1dummy descriptions 1",
             'done':false
         }, {
             'id': 2,
