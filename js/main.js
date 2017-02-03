@@ -1,41 +1,63 @@
 (function(window) {
     'use strict';
+
+
+    if (localStorage.getItem("list") !== null) {
+        var list = JSON.parse(localStorage.getItem("list"));
+    } else {
+        var list = window.data.list;
+    }
+
     var APP = {
-        data: window.data.list,
-        list: JSON.parse(localStorage.getItem("list")),
+        list: list,
         init: init,
         setList: setList,
-        toggleAddFrm: toggleAddFrm,
+        //toggleAddFrm: toggleAddFrm,
         addItem: addItem,
         delete: del,
-        filter: filter
+        filter: filter,
+        openModal: openModal,
+        hideModal: hideModal
     };
     window.APP = APP;
     APP.init();
 
     function init() {
         this.setList();
+
+        var span = document.getElementsByClassName("close")[0];
+        window.onclick = function(event) {
+            var modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     }
 
     function setList() {
+        console.log(this.list);
         var text = '';
         var status = '';
-        for (var i = 0; i < this.list.length; i++) {
-            if (this.list[i].done) {
-                status = "checked='checked'";
-            } else {
-                status = "";
+        if (this.list != null || this.list.length > 0) {
+            for (var i = 0; i < this.list.length; i++) {
+                if (this.list[i].done) {
+                    status = "checked='checked'";
+                } else {
+                    status = "";
+                }
+                text += '<li>' +
+                    '<div class="text-content">' +
+                    '<p class="title">' + this.list[i].title + '</p>' +
+                    '<p class="description">' + this.list[i].description + '</p>' +
+                    '</div>' +
+                    '<div class="actions">' +
+                    '<input type="checkbox" name="done" ' + status + ' value="0">' +
+                    '<a href="#" onclick="APP.delete(' + this.list[i].id + ');return false;">Delete</a>' +
+                    '</div>' +
+                    '</li>';
             }
-            text += '<li>' +
-                '<div class="text-content">' +
-                '<p class="title">' + this.list[i].title + '</p>' +
-                '<p class="description">' + this.list[i].description + '</p>' +
-                '</div>' +
-                '<div class="actions">' +
-                '<input type="checkbox" name="done" ' + status + ' value="0">' +
-                '<a href="#" onclick="APP.delete(' + this.list[i].id + ');return false;">Delete</a>' +
-                '</div>' +
-                '</li>';
+        } else {
+            text += "No results Found";
         }
         document.getElementById(config.containerID).innerHTML = text;
         //console.log(this.data);
@@ -68,10 +90,12 @@
             err = true;
         }
         if (err) {
+            document.getElementById(config.add_form_error_log).style.display = 'block';
             document.getElementById(config.add_form_error_log).innerHTML = rtn;
             err = false;
         } else {
             document.getElementById(config.add_form_error_log).innerHTML = "";
+            document.getElementById(config.add_form_error_log).style.display = 'none';
             var data = {
                 id: Math.floor(Math.random() * 10),
                 title: title_val,
@@ -84,6 +108,7 @@
             console.log(dt);
             this.setList();
             document.getElementById(config.add_item_form_id).reset();
+            this.hideModal();
         }
     }
 
@@ -127,5 +152,15 @@
 
             document.getElementById(config.containerID).innerHTML = text;
         }
+    }
+
+    function openModal() {
+        var modal = document.getElementById('myModal');
+        modal.style.display = "block";
+    }
+
+    function hideModal() {
+        var modal = document.getElementById('myModal');
+        modal.style.display = "none";
     }
 })(window);

@@ -17,6 +17,11 @@ a {}
 
 .btn {}
 
+.header{
+        background-color: #66ff33;
+    text-align: center;
+    padding: 10px;
+}
 .container {
     display: block;
     width: 75%;
@@ -30,7 +35,9 @@ a {}
     width: 100%;
 }
 
-.content {}
+.content {
+    width: 95%;
+}
 
 .text-content {
     float: left;
@@ -54,19 +61,19 @@ a {}
 
 
 input[type='text'] {
-    width: 100%;
+    width: 90%;
     background-color: #ececec;
     border: none;
     padding: 10px;
 }
 
 /*  New item adding form design */
-#add_new_element{
+/*#add_new_element{
 	display: none;
-}
+}*/
 .add_new_element{
 	float: left;
-	width: 100%;
+	width: 90%;
 	border: 1px solid #ececec;
 	padding: 10px;
 	margin: 20px 0;
@@ -77,15 +84,18 @@ input[type='text'] {
 	display: block;
 }
 .add_new_element input{
+    padding: 10px 20px;
 }
 .add_new_element textarea{
-	width: 100%;
-	padding: 10px 0;
+	width: 90%;
+	padding: 10px 20px;
 }
 .add_element{
 	float: right;
 }
-.cancel_modal{}
+.cancel_modal{
+    float: left;
+}
 .add_new_element input.submit_button{
 	padding: 10px;
 }
@@ -95,4 +105,89 @@ input[type='text'] {
 	width: 90%;
 	padding: 10px;
 	margin: 10px 0;
+    display: none;
+}
+.list-container{
+    
+}
+ #filter{
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+#filter:focus {
+    width: 95%;
+}
+
+/* Modal Styling */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
 }
