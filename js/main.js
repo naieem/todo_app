@@ -6,39 +6,43 @@
     } else {
         var list = window.data.list;
     }
-    var modal = document.getElementById('myModal');
+    var modal = document.getElementById(config.add_modal_id);
+    var editmodal = document.getElementById(config.edit_modal_id);
     var containerID = document.getElementById(config.containerID);
     var frm = document.getElementById(config.add_frm_id);
     var add_form_error_log = document.getElementById(config.add_form_error_log);
+    var edit_form_error_log = document.getElementById(config.edit_form_error_log);
     var filter_text_id = document.getElementById(config.filter_id);
 
     var APP = {
         list: list,
         init: init,
         setList: setList,
-        //toggleAddFrm: toggleAddFrm,
         addItem: addItem,
         delete: del,
-        // filter: filter,
         openModal: openModal,
         hideModal: hideModal,
         statusChange: statusChange,
         showDone: showDone,
         showUndone: showUndone,
         showAll: showAll,
-        dynamicSort:dynamicSort
+        dynamicSort: dynamicSort,
+        editModal: editModal,
+        edit: edit,
+        hideEditModal: hideEditModal,
+        validation: validation
     };
-    window.APP=APP;
+    window.APP = APP;
     APP.init();
 
     function init() {
         this.setList();
-
-        var span = document.getElementsByClassName("close")[0];
         window.onclick = function(event) {
-
             if (event.target == modal) {
                 modal.style.display = "none";
+            }
+            if (event.target == editmodal) {
+                editmodal.style.display = "none";
             }
         }
     }
@@ -62,8 +66,6 @@
     }
 
     function toggleAddFrm() {
-
-        //console.log(frm.style);
         if (frm.style.display == 'none' || frm.style.display == '') {
             frm.style.display = 'block';
         } else {
@@ -157,13 +159,17 @@
     }
 
     function showDone() {
+        var titleCls = '';
+        var status = '';
         var filter_val = filter_text_id.value;
         var text = '';
         for (var i = 0; i < this.list.length; i++) {
             if (this.list[i].done) {
                 status = "checked='checked'";
+                titleCls = "class='title done'";
             } else {
                 status = "";
+                titleCls = "class='title'";
             }
             var title = this.list[i].title;
             var description = this.list[i].description;
@@ -173,23 +179,25 @@
             if (filter_val != '' && (title_match != null || description_match != null) && this.list[i].done) {
                 text += '<li>' +
                     '<div class="text-content">' +
-                    '<p class="title">' + this.list[i].title + '</p>' +
+                    '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
                     '<p class="description">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
                     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
                     '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
+                    '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
                     '</div>' +
                     '</li>';
             } else if (filter_val == '' && this.list[i].done) {
                 text += '<li>' +
                     '<div class="text-content">' +
-                    '<p class="title">' + this.list[i].title + '</p>' +
+                    '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
                     '<p class="description">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
                     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
                     '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
+                    '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
                     '</div>' +
                     '</li>';
             } else {
@@ -200,13 +208,17 @@
     }
 
     function showUndone() {
+        var titleCls = '';
+        var status = '';
         var filter_val = filter_text_id.value;
         var text = '';
         for (var i = 0; i < this.list.length; i++) {
             if (this.list[i].done) {
                 status = "checked='checked'";
+                titleCls = "class='title done'";
             } else {
                 status = "";
+                titleCls = "class='title'";
             }
             var title = this.list[i].title;
             var description = this.list[i].description;
@@ -216,23 +228,25 @@
             if (filter_val != '' && (title_match != null || description_match != null) && !this.list[i].done) {
                 text += '<li>' +
                     '<div class="text-content">' +
-                    '<p class="title">' + this.list[i].title + '</p>' +
+                    '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
                     '<p class="description">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
                     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
                     '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
+                    '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
                     '</div>' +
                     '</li>';
             } else if (filter_val == '' && !this.list[i].done) {
                 text += '<li>' +
                     '<div class="text-content">' +
-                    '<p class="title">' + this.list[i].title + '</p>' +
+                    '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
                     '<p class="description">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
                     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
                     '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
+                    '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
                     '</div>' +
                     '</li>';
             } else {
@@ -243,6 +257,7 @@
     }
 
     function showAll() {
+        var titleCls = '';
         var filter_val = filter_text_id.value;
         var text = '';
         var status = '';
@@ -251,8 +266,10 @@
                 for (var i = 0; i < this.list.length; i++) {
                     if (this.list[i].done) {
                         status = "checked='checked'";
+                        titleCls = "class='title done'";
                     } else {
                         status = "";
+                        titleCls = "class='title'";
                     }
                     var title = this.list[i].title;
                     var description = this.list[i].description;
@@ -262,12 +279,13 @@
                     if (title_match != null || description_match != null) {
                         text += '<li>' +
                             '<div class="text-content">' +
-                            '<p class="title">' + this.list[i].title + '</p>' +
+                            '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
                             '<p class="description">' + this.list[i].description + '</p>' +
                             '</div>' +
                             '<div class="actions">' +
                             '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
                             '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
+                            '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
                             '</div>' +
                             '</li>';
                     } else {
@@ -279,17 +297,20 @@
                 for (var i = 0; i < this.list.length; i++) {
                     if (this.list[i].done) {
                         status = "checked='checked'";
+                        titleCls = "class='title done'";
                     } else {
                         status = "";
+                        titleCls = "class='title'";
                     }
                     text += '<li>' +
                         '<div class="text-content">' +
-                        '<p class="title">' + this.list[i].title + '</p>' +
+                        '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
                         '<p class="description">' + this.list[i].description + '</p>' +
                         '</div>' +
                         '<div class="actions">' +
                         '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
                         '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
+                        '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
                         '</div>' +
                         '</li>';
                 }
@@ -310,6 +331,74 @@
             var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
             return result * sortOrder;
         }
+    }
+
+    function editModal(id) {
+        for (var i = 0; i < this.list.length; i++) {
+            if (this.list[i].id == id) {
+                document.querySelector('#' + config.editTitle).value = this.list[i].title;
+                document.querySelector('#' + config.editDescription).value = this.list[i].description;
+                document.querySelector('#' + config.editId).value = id;
+            }
+        }
+        editmodal.style.display = "block";
+    }
+
+    function edit() {
+        var titleField = document.getElementById(config.editTitle);
+        var descriptionField = document.getElementById(config.editDescription);
+        var itemId = document.querySelector('#' + config.editId).value;
+        var title = document.querySelector('#' + config.editTitle).value;
+        var description = document.querySelector('#' + config.editDescription).value;
+        var rtn = '';
+        var err = false;
+        if (title == '') {
+            titleField.style.border = "1px solid red";
+            rtn += message.title_error + "<br>";
+            err = true;
+        } else {
+            titleField.style.border = "1px solid gray";
+        }
+        if (description == '') {
+            descriptionField.style.border = "1px solid red";
+            rtn += message.desc_error + "<br>";
+            err = true;
+        } else {
+            descriptionField.style.border = "1px solid gray";
+        }
+        if (err) {
+            edit_form_error_log.style.display = 'block';
+            edit_form_error_log.innerHTML = rtn;
+            err = false;
+        } else {
+            edit_form_error_log.innerHTML = "";
+            edit_form_error_log.style.display = 'none';
+            titleField.style.border = "1px solid gray";
+            descriptionField.style.border = "1px solid gray";
+            for (var i = 0; i < this.list.length; i++) {
+                if (this.list[i].id == itemId) {
+                    this.list[i].title = title;
+                    this.list[i].description = description;
+                }
+            }
+            localStorage.setItem("list", JSON.stringify(this.list));
+            this.hideEditModal();
+            this.init();
+        }
+    }
+
+    function hideEditModal() {
+        editmodal.style.display = "none";
+    }
+    function validation(input){
+        var val=input.value;
+        if(val ==''){
+            input.style.border = "1px solid red";
+        }
+        else{
+         input.style.border = "1px solid gray";   
+        }
+        console.log(input.value);
     }
 
 })(window);

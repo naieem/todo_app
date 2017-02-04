@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>ToDo Application</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
@@ -22,7 +23,7 @@
                 <!-- filter form -->
                 <form class="filter_data">
                     <h2>Search</h2>
-                    <input type="text" name="filter" id="filter" onkeyup="APP.setList()">
+                    <input type="text" name="filter" id="filter" placeholder="Search" onkeyup="APP.setList()">
                 </form>
                 <!-- content area -->
                 <div class="content">
@@ -65,11 +66,36 @@
                             <form name="add_frm" class="add_new_element" id="add_new_element" onsubmit="APP.addItem();return false;">
                                 <span id="error_log"></span>
                                 <label>Title</label>
-                                <input type="text" name="title" placeholder="Title">
+                                <input type="text" name="title" placeholder="Title" onkeyup="APP.validation(this);">
                                 <label>Description</label>
-                                <textarea name="description" placeholder="Description"></textarea>
+                                <textarea name="description" rows="10" placeholder="Description" onkeyup="APP.validation(this);"></textarea>
                                 <input type="submit" name="submit" class="add_element submit_button" value="Add">
                                 <input type="submit" name="cancel" class="cancel_modal submit_button" onclick="APP.hideModal();return false;" value="Cancel">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- edit modal -->
+            <div id="editModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close" onclick="APP.hideEditModal();return false;">&times;</span>
+                        <h2>Edit Item</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="frm_container">
+                            <form name="add_frm" class="add_new_element" id="add_new_element" onsubmit="APP.edit();return false;">
+                                <span id="edit_error_log"></span>
+                                <label>Title</label>
+                                <input type="text" name="title" placeholder="Title" id="editTitle" onkeyup="APP.validation(this);">
+                                <label>Description</label>
+                                <textarea name="description" rows="10" placeholder="Description" id="editDescription" onkeyup="APP.validation(this);"></textarea>
+                                <input type="hidden" id="editItemId" value="">
+                                <input type="submit" name="submit" class="add_element submit_button" value="Update">
+                                <input type="submit" name="cancel" class="cancel_modal submit_button" onclick="APP.hideEditModal();return false;" value="Cancel">
                             </form>
                         </div>
                     </div>

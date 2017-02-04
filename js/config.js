@@ -7,8 +7,14 @@
         add_item_description:"description",
         add_form_name :"add_frm",
         add_form_error_log :"error_log",
+        edit_form_error_log :"edit_error_log",
         filter_id :"filter",
-        itemStatus:"status"
+        itemStatus:"status",
+        add_modal_id:"myModal",
+        edit_modal_id:"editModal",
+        editTitle:"editTitle",
+        editDescription:"editDescription",
+        editId:"editItemId"
     };
     window.config = data;
 })(window);
