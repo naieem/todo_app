@@ -1,6 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
-    min-height: 700px;
+    min-height: 1200px;
     background-color: #935d8c;
     background-image: url(../img/overlay.png), -moz-linear-gradient(160deg, #e37682 15%, #5f4d93 85%);
     background-image: url(../img/overlay.png), -webkit-linear-gradient(160deg, #e37682 15%, #5f4d93 85%);
@@ -400,3 +400,5 @@ input[type="checkbox"]:checked + label span {
     border-bottom: 1px solid #000;
     border-top: 1px solid #000;
 }
+
+

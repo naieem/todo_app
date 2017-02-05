@@ -19,5 +19,4 @@
         }]
     };
     window.data = data;
-    //console.log(data.list);
 })(window);
