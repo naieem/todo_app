@@ -1,11 +1,11 @@
 (function(window) {
     'use strict';
 
-    if (localStorage.getItem("list") !== null) {
-        var list = JSON.parse(localStorage.getItem("list"));
-    } else {
+    // if (localStorage.getItem("list") !== null) {
+    //     var list = JSON.parse(localStorage.getItem("list"));
+    // } else {
         var list = window.data.list;
-    }
+    // }
     var modal = document.getElementById(config.add_modal_id);
     var editmodal = document.getElementById(config.edit_modal_id);
     var containerID = document.getElementById(config.containerID);
@@ -177,10 +177,10 @@
             var title_match = title.match(pattern);
             var description_match = description.match(pattern);
             if (filter_val != '' && (title_match != null || description_match != null) && this.list[i].done) {
-                text += '<li>' +
+                text += '<li >' +
                     '<div class="text-content">' +
-                    '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
-                    '<p class="description">' + this.list[i].description + '</p>' +
+                    '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
+                    '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
                     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
@@ -189,10 +189,10 @@
                     '</div>' +
                     '</li>';
             } else if (filter_val == '' && this.list[i].done) {
-                text += '<li>' +
+                text += '<li >' +
                     '<div class="text-content">' +
-                    '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
-                    '<p class="description">' + this.list[i].description + '</p>' +
+                    '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
+                    '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
                     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
@@ -226,10 +226,10 @@
             var title_match = title.match(pattern);
             var description_match = description.match(pattern);
             if (filter_val != '' && (title_match != null || description_match != null) && !this.list[i].done) {
-                text += '<li>' +
+                text += '<li >' +
                     '<div class="text-content">' +
-                    '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
-                    '<p class="description">' + this.list[i].description + '</p>' +
+                    '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
+                    '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
                     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
@@ -238,10 +238,10 @@
                     '</div>' +
                     '</li>';
             } else if (filter_val == '' && !this.list[i].done) {
-                text += '<li>' +
+                text += '<li >' +
                     '<div class="text-content">' +
-                    '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
-                    '<p class="description">' + this.list[i].description + '</p>' +
+                    '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
+                    '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
                     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
@@ -277,10 +277,10 @@
                     var title_match = title.match(pattern);
                     var description_match = description.match(pattern);
                     if (title_match != null || description_match != null) {
-                        text += '<li>' +
+                        text += '<li >' +
                             '<div class="text-content">' +
-                            '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
-                            '<p class="description">' + this.list[i].description + '</p>' +
+                            '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
+                            '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                             '</div>' +
                             '<div class="actions">' +
                             '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
@@ -302,10 +302,10 @@
                         status = "";
                         titleCls = "class='title'";
                     }
-                    text += '<li>' +
+                    text += '<li >' +
                         '<div class="text-content">' +
-                        '<p ' + titleCls + '>' + this.list[i].title + '</p>' +
-                        '<p class="description">' + this.list[i].description + '</p>' +
+                        '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
+                        '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                         '</div>' +
                         '<div class="actions">' +
                         '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
