@@ -177,27 +177,23 @@
             var title_match = title.match(pattern);
             var description_match = description.match(pattern);
             if (filter_val != '' && (title_match != null || description_match != null) && this.list[i].done) {
-                text += '<li >' +
+                text += '<li tabindex="0" aria-label="Todo item list">' +
                     '<div class="text-content">' +
                     '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
                     '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
-                    '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
-                    '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
-                    '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
+                    '<input type="checkbox" aria-label="item status" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
                     '</div>' +
                     '</li>';
             } else if (filter_val == '' && this.list[i].done) {
-                text += '<li >' +
+                text += '<li tabindex="0" aria-label="Todo item list">' +
                     '<div class="text-content">' +
                     '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
                     '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
-                    '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
-                    '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
-                    '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
+                    '<input type="checkbox" aria-label="item status" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
                     '</div>' +
                     '</li>';
             } else {
@@ -226,27 +222,25 @@
             var title_match = title.match(pattern);
             var description_match = description.match(pattern);
             if (filter_val != '' && (title_match != null || description_match != null) && !this.list[i].done) {
-                text += '<li >' +
+                text += '<li tabindex="0" aria-label="Todo item list">' +
                     '<div class="text-content">' +
                     '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
                     '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
-                    '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
-                    '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
-                    '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
+                    '<input type="checkbox" aria-label="item status" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
+
                     '</div>' +
                     '</li>';
             } else if (filter_val == '' && !this.list[i].done) {
-                text += '<li >' +
+                text += '<li tabindex="0" aria-label="Todo item list">' +
                     '<div class="text-content">' +
                     '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
                     '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                     '</div>' +
                     '<div class="actions">' +
-                    '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
-                    '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
-                    '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
+                    '<input type="checkbox" aria-label="item status" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
+
                     '</div>' +
                     '</li>';
             } else {
@@ -277,15 +271,14 @@
                     var title_match = title.match(pattern);
                     var description_match = description.match(pattern);
                     if (title_match != null || description_match != null) {
-                        text += '<li >' +
+                        text += '<li tabindex="0" aria-label="Todo item list">' +
                             '<div class="text-content">' +
                             '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
                             '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                             '</div>' +
                             '<div class="actions">' +
-                            '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
-                            '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
-                            '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
+                            '<input type="checkbox" aria-label="item status" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
+
                             '</div>' +
                             '</li>';
                     } else {
@@ -302,15 +295,14 @@
                         status = "";
                         titleCls = "class='title'";
                     }
-                    text += '<li >' +
+                    text += '<li tabindex="0" aria-label="Todo item list">' +
                         '<div class="text-content">' +
                         '<h1 aria-label="title:' + this.list[i].title + '" tabindex="0"' + titleCls + '>' + this.list[i].title + '</h1>' +
                         '<p aria-label="description:' + this.list[i].description + '" class="description:' + this.list[i].description + '" tabindex="0">' + this.list[i].description + '</p>' +
                         '</div>' +
                         '<div class="actions">' +
-                        '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
-                        '<a href="#" class="delete buttons" onclick="APP.delete(' + this.list[i].id + ');return false;" title="Delete"></a>' +
-                        '<a href="#" class="edit buttons" onclick="APP.editModal(' + this.list[i].id + ');return false;" title="Edit"></a>' +
+                        '<input type="checkbox" aria-label="item status" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + this.list[i].id + ');"><label><span></span></label>' +
+
                         '</div>' +
                         '</li>';
                 }
