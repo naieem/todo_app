@@ -12,17 +12,17 @@
 </head>
 
 <body>
-    <header aria-label="Header Of the website">
+    <header aria-label="Header Of the website" class="left width-100">
         <section class="align-center">
-            <aside class="logo"><img src="img/logo.png" alt="Logo" tabindex="0"></aside>
-            <aside class="search-box">
+            <aside class="logo width-20"><img src="img/logo.png" alt="Logo" tabindex="0"></aside>
+            <aside class="search-box right width-40">
                 <input type="text" name="filter" id="filter" placeholder="Search" aria-label="Search the Website" onkeyup="APP.setList()">
             </aside>
         </section>
     </header>
     <section class="todo-container left" >
-        <div class="align-center main-container">
-            <aside class="left-navbar" aria-label="Side Navigation" tabindex="0">
+        <div class="align-center main-container display-table">
+            <aside class="left-navbar width-20 left" aria-label="Side Navigation" tabindex="0">
                 <nav class="sidenav">
                     <ul>
                         <li><a href="#" title="Home">Home</a></li>
@@ -31,33 +31,33 @@
                     </ul>
                 </nav>
             </aside>
-            <aside class="todo-wrapper" aria-label="all todo item section" tabindex="0">
-                <div class="status_wrapper ">
+            <section class="todo-wrapper width-80 right" aria-label="all todo item section" tabindex="0">
+                <div class="status_wrapper text-center">
                     <h2  aria-label="filter by item status" tabindex="0">Status</h2>
-                    <div class="status">
+                    <div class="status width-30">
                         <input type="radio" name="status" onchange="APP.setList();" value="all" checked="checked" aria-label="Filter By all"/>
                         <label><span></span>All</label>
                     </div>
-                    <div class="status">
+                    <div class="status width-30">
                         <input type="radio" name="status" onchange="APP.setList();" value="done" aria-label="Filter By done work" />
                         <label><span></span>Done</label>
                     </div>
-                    <div class="status">
+                    <div class="status width-30">
                         <input type="radio" name="status" onchange="APP.setList();" value="undone" aria-label="Filter By undone work" />
                         <label><span></span>Undone</label>
                     </div>
                     <ul id="to_list"  aria-label="showing all todo item" tabindex="0">
                     </ul>
                 </div>
-            </aside>
+            </section>
         </div>
     </section>
     <section class="testimonial left" tabindex="0" aria-label="Testimonial Section">
         <div class="testimonial-wrapper align-center">
-            <aside class="user-thumb-container">
+            <aside class="user-thumb-container width-30">
                 <div class="user-thumb"><img tabindex="0" src="http://placehold.it/350x150" alt="customer profile pic"></div>
             </aside>
-            <aside class="user-text-container"  aria-label="Customers Comment" tabindex="0">
+            <aside class="user-text-container width-70"  aria-label="Customers Comment" tabindex="0">
                 <p class="user-text" tabindex="0">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but
                 </p>
@@ -66,10 +66,10 @@
     </section>
     <section class="testimonial left" tabindex="0" aria-label="Testimonial Section">
         <div class="testimonial-wrapper align-center">
-            <aside class="user-thumb-container">
+            <aside class="user-thumb-container width-30">
                 <div class="user-thumb"><img tabindex="0" src="http://placehold.it/350x150" alt="customer profile pic"></div>
             </aside>
-            <aside class="user-text-container"  aria-label="Customers Comment" tabindex="0">
+            <aside class="user-text-container width-70"  aria-label="Customers Comment" tabindex="0">
                 <p class="user-text" tabindex="0">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but
                 </p>
@@ -77,22 +77,22 @@
         </div>
     </section>
     <section class="statistics-container left" tabindex="0" aria-label="Statistics Section">
-        <div class="align-center statistics-wrapper">
+        <div class="align-center statistics-wrapper display-table">
             <article class="tile-container left" tabindex="0">
-                <div class="tile" aria-label="Statistics Description">
-                    <span class="badge">1</span>
+                <div class="tile pos-relative" aria-label="Statistics Description">
+                    <span class="badge pos-absolute text-center">1</span>
                     <p tabindex="0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but</p>
                 </div>
             </article>
             <article class="tile-container left" tabindex="0">
-                <div class="tile" aria-label="Statistics Description">
-                    <span class="badge">1</span>
+                <div class="tile pos-relative" aria-label="Statistics Description">
+                    <span class="badge pos-absolute text-center">1</span>
                     <p tabindex="0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but</p>
                 </div>
             </article>
             <article class="tile-container left" tabindex="0">
-                <div class="tile" aria-label="Statistics Description">
-                    <span class="badge">1</span>
+                <div class="tile pos-relative" aria-label="Statistics Description">
+                    <span class="badge pos-absolute text-center">1</span>
                     <p tabindex="0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but</p>
                 </div>
             </article>
@@ -100,14 +100,14 @@
     </section>
     <footer class="footer left" tabindex="0" aria-label="Footer Section">
         <div class="align-center footer-wrapper">
-            <aside class="copyrite-text-container">
+            <aside class="copyrite-text-container width-50">
                 <div class="copyrite-text">
                 <p tabindex="0">&copy 2017 By Secure Link services Bd Ltd</p>
                 </div>
             </aside>
-            <aside class="footer-nav-container" >
+            <aside class="footer-nav-container width-50" >
                 <div class="nav-container">
-                    <nav class="footer-nav" aria-label="Footer Navigation" tabindex="0">
+                    <nav class="footer-nav right" aria-label="Footer Navigation" tabindex="0">
                         <ul>
                             <li><a href="" title="home">Home</a></li>
                             <li><a href="" title="about">About</a></li>
