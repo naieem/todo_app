@@ -4,20 +4,18 @@ var Model = Model || (function() {
     return {
         list: getInitialData
     }
+
     // model.list().then(function(t) {
     //     console.log(t);
     // }).catch(function() {
     //     console.log("error");
     // });
-    return model;
-
+    // console.log(obj.list());
     function getInitialData() {
-        return new Promise(function(resolve, reject) {
             if (localStorage.getItem("list") !== null) {
-                resolve(JSON.parse(localStorage.getItem("list")));
+                return JSON.parse(localStorage.getItem("list"));
             } else {
-                resolve(data.list);
+                return data.list;
             }
-        });
     }
 })();
