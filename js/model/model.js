@@ -4,15 +4,10 @@ var Model = Model || (function() {
     return {
         list: getInitialData,
         showData: showData,
-        addData:addData
+        addData: addData,
+        editData: editData
     }
 
-    // model.list().then(function(t) {
-    //     console.log(t);
-    // }).catch(function() {
-    //     console.log("error");
-    // });
-    // console.log(obj.list());
     function getInitialData() {
         if (localStorage.getItem("list") !== null) {
             return JSON.parse(localStorage.getItem("list"));
@@ -143,10 +138,22 @@ var Model = Model || (function() {
         return temp;
     }
 
-    function addData(oldData,newData){
-        var data=oldData.push(newData);
-        var newData=localStorage.setItem("list", JSON.stringify(data));
-        return newData;
+    function addData(oldData, newData) {
+        oldData.push(newData);
+        var newList = oldData;
+        localStorage.setItem("list", JSON.stringify(newList));
+        var data = JSON.parse(localStorage.getItem("list"));
+        return data;
+    }
+
+    function editData(data, id, newData) {
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].id == id) {
+                data[i].title = newData.title;
+                data[i].description = newData.description;
+            }
+        }
+        localStorage.setItem("list", JSON.stringify(data));
     }
 
 

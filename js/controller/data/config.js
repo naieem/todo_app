@@ -1,4 +1,4 @@
-(function(window) {
+var Config = Config || (function() {
     'use strict';
     var data = {
         containerID: "to_list",
@@ -16,5 +16,5 @@
         editDescription:"editDescription",
         editId:"editItemId"
     };
-    window.config = data;
-})(window);
+    return data;
+})();

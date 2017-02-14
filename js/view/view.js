@@ -30,14 +30,14 @@ var View = View || (function() {
     }
     function HideModal(type) {
         if(type=='add'){
-            var modal = document.getElementById(config.add_modal_id);
+            var modal = document.getElementById(Config.add_modal_id);
         }
         if(type=='edit'){
-         var modal = document.getElementById(config.edit_modal_id);
+         var modal = document.getElementById(Config.edit_modal_id);
         }
         modal.style.display = "none";
     }
 
 
-})();
+})(Config);
     
