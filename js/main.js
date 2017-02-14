@@ -284,7 +284,6 @@
                     } else {
                         text += '';
                     }
-
                 }
             } else {
                 for (var i = 0; i < this.list.length; i++) {
