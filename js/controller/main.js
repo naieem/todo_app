@@ -90,23 +90,24 @@
         var frm_name = config.add_form_name;
         var title = config.add_item_title;
         var description = config.add_item_description;
-        var title_val = document.forms[frm_name][title].value;
-        var desc_val = document.forms[frm_name][description].value;
+        var formName=document.forms[frm_name];
+        var title_val = formName[title].value;
+        var desc_val = formName[description].value;
         var rtn = '';
         var err = false;
         if (title_val == '') {
-            document.forms[frm_name][title].style.border = "1px solid red";
+            formName[title].style.border = "1px solid red";
             rtn += message.title_error + "<br>";
             err = true;
         } else {
-            document.forms[frm_name][title].style.border = "1px solid gray";
+            formName[title].style.border = "1px solid gray";
         }
         if (desc_val == '') {
-            document.forms[frm_name][description].style.border = "1px solid red";
+            formName[description].style.border = "1px solid red";
             rtn += message.desc_error + "<br>";
             err = true;
         } else {
-            document.forms[frm_name][description].style.border = "1px solid gray";
+            formName[description].style.border = "1px solid gray";
         }
         if (err) {
             add_form_error_log.style.display = 'block';
@@ -115,8 +116,8 @@
         } else {
             add_form_error_log.innerHTML = "";
             add_form_error_log.style.display = 'none';
-            document.forms[frm_name][title].style.border = "1px solid gray";
-            document.forms[frm_name][description].style.border = "1px solid gray";
+            formName[title].style.border = "1px solid gray";
+            formName[description].style.border = "1px solid gray";
             var data = {
                 id: Math.floor(Math.random() * 500),
                 title: title_val,
@@ -124,7 +125,8 @@
                 done: false
             }
             this.list.push(data);
-            localStorage.setItem("list", JSON.stringify(this.list));
+            var dcsn=Model.addData(this.list,data);
+            console.log(dcsn);
             var dt = JSON.parse(localStorage.getItem("list"));
             console.log(dt);
             this.setList();
@@ -145,11 +147,11 @@
     }
 
     function openModal() {
-        modal.style.display = "block";
+        View.AddModal(modal);
     }
 
     function hideModal() {
-        modal.style.display = "none";
+        View.HideModal('add');
     }
 
     function statusChange(checkbox, id) {
@@ -268,7 +270,7 @@
     }
 
     function hideEditModal() {
-        editmodal.style.display = "none";
+        View.HideModal('edit');
     }
 
     function validation(input) {

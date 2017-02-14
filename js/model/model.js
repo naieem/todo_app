@@ -3,7 +3,8 @@ var Model = Model || (function() {
 
     return {
         list: getInitialData,
-        showData: showData
+        showData: showData,
+        addData:addData
     }
 
     // model.list().then(function(t) {
@@ -33,7 +34,6 @@ var Model = Model || (function() {
         } else {
             // text += "No results Found";
         }
-        // return temp;
     }
 
     function showAll(data) {
@@ -58,17 +58,6 @@ var Model = Model || (function() {
                     data[i].titleCls = titleCls;
                     data[i].status = status;
                     temp.push(data[i]);
-                    // text += '<li>' +
-                    //     '<div class="text-content">' +
-                    //     '<p ' + titleCls + '>' + data[i].title + '</p>' +
-                    //     '<p class="description">' + data[i].description + '</p>' +
-                    //     '</div>' +
-                    //     '<div class="actions">' +
-                    //     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + data[i].id + ');"><label><span></span></label>' +
-                    //     '<a href="#" class="delete buttons" onclick="APP.delete(' + data[i].id + ');return false;" title="Delete"></a>' +
-                    //     '<a href="#" class="edit buttons" onclick="APP.editModal(' + data[i].id + ');return false;" title="Edit"></a>' +
-                    //     '</div>' +
-                    //     '</li>';
                 } else {
                     //text += '';
                 }
@@ -85,17 +74,6 @@ var Model = Model || (function() {
                 data[i].titleCls = titleCls;
                 data[i].status = status;
                 temp.push(data[i]);
-                // text += '<li>' +
-                //     '<div class="text-content">' +
-                //     '<p ' + titleCls + '>' + data[i].title + '</p>' +
-                //     '<p class="description">' + data[i].description + '</p>' +
-                //     '</div>' +
-                //     '<div class="actions">' +
-                //     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + data[i].id + ');"><label><span></span></label>' +
-                //     '<a href="#" class="delete buttons" onclick="APP.delete(' + data[i].id + ');return false;" title="Delete"></a>' +
-                //     '<a href="#" class="edit buttons" onclick="APP.editModal(' + data[i].id + ');return false;" title="Edit"></a>' +
-                //     '</div>' +
-                //     '</li>';
             }
         }
         return temp;
@@ -122,32 +100,10 @@ var Model = Model || (function() {
                 data[i].titleCls = titleCls;
                 data[i].status = status;
                 temp.push(data[i]);
-                // text += '<li>' +
-                //     '<div class="text-content">' +
-                //     '<p ' + titleCls + '>' + data[i].title + '</p>' +
-                //     '<p class="description">' + data[i].description + '</p>' +
-                //     '</div>' +
-                //     '<div class="actions">' +
-                //     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + data[i].id + ');"><label><span></span></label>' +
-                //     '<a href="#" class="delete buttons" onclick="APP.delete(' + data[i].id + ');return false;" title="Delete"></a>' +
-                //     '<a href="#" class="edit buttons" onclick="APP.editModal(' + data[i].id + ');return false;" title="Edit"></a>' +
-                //     '</div>' +
-                //     '</li>';
             } else if (data.filterVal == '' && !data[i].done) {
                 data[i].titleCls = titleCls;
                 data[i].status = status;
                 temp.push(data[i]);
-                // text += '<li>' +
-                //     '<div class="text-content">' +
-                //     '<p ' + titleCls + '>' + data[i].title + '</p>' +
-                //     '<p class="description">' + data[i].description + '</p>' +
-                //     '</div>' +
-                //     '<div class="actions">' +
-                //     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + data[i].id + ');"><label><span></span></label>' +
-                //     '<a href="#" class="delete buttons" onclick="APP.delete(' + data[i].id + ');return false;" title="Delete"></a>' +
-                //     '<a href="#" class="edit buttons" onclick="APP.editModal(' + data[i].id + ');return false;" title="Edit"></a>' +
-                //     '</div>' +
-                //     '</li>';
             } else {
                 // text += "";
             }
@@ -176,37 +132,21 @@ var Model = Model || (function() {
                 data[i].titleCls = titleCls;
                 data[i].status = status;
                 temp.push(data[i]);
-                // text += '<li>' +
-                //     '<div class="text-content">' +
-                //     '<p ' + titleCls + '>' + data[i].title + '</p>' +
-                //     '<p class="description">' + data[i].description + '</p>' +
-                //     '</div>' +
-                //     '<div class="actions">' +
-                //     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + data[i].id + ');"><label><span></span></label>' +
-                //     '<a href="#" class="delete buttons" onclick="APP.delete(' + data[i].id + ');return false;" title="Delete"></a>' +
-                //     '<a href="#" class="edit buttons" onclick="APP.editModal(' + data[i].id + ');return false;" title="Edit"></a>' +
-                //     '</div>' +
-                //     '</li>';
             } else if (data.filterVal == '' && data[i].done) {
                 data[i].titleCls = titleCls;
                 data[i].status = status;
                 temp.push(data[i]);
-                // text += '<li>' +
-                //     '<div class="text-content">' +
-                //     '<p ' + titleCls + '>' + data[i].title + '</p>' +
-                //     '<p class="description">' + data[i].description + '</p>' +
-                //     '</div>' +
-                //     '<div class="actions">' +
-                //     '<input type="checkbox" name="done" ' + status + ' value="0" onchange="APP.statusChange(this,' + data[i].id + ');"><label><span></span></label>' +
-                //     '<a href="#" class="delete buttons" onclick="APP.delete(' + data[i].id + ');return false;" title="Delete"></a>' +
-                //     '<a href="#" class="edit buttons" onclick="APP.editModal(' + data[i].id + ');return false;" title="Edit"></a>' +
-                //     '</div>' +
-                //     '</li>';
             } else {
                 // text += "";
             }
         }
         return temp;
+    }
+
+    function addData(oldData,newData){
+        var data=oldData.push(newData);
+        var newData=localStorage.setItem("list", JSON.stringify(data));
+        return newData;
     }
 
 
