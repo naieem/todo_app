@@ -1,10 +1,22 @@
 var Message = Message || (function() {
     'use strict';
     var data = {
-        title_error : "Title should not be empty",
-        desc_error : "Description should not be empty",
-        item_add_success : "Item Added Succesfully",
-        item_edit_success : "Item edited succesfully"
+        title_error: {
+            'en': 'Title should not be empty',
+            'fr': 'Title should not be empty fr'
+        },
+        desc_error: {
+            'en': 'Description should not be empty',
+            'fr': 'Description should not be empty fr'
+        },
+        item_add_success: {
+            'en': 'Item Added Succesfully',
+            'fr': 'Item Added Succesfully fr'
+        },
+        item_edit_success: {
+            'en': 'Item edited succesfully',
+            'fr': 'Item edited succesfully fr'
+        }
     };
     return data;
 })();

@@ -14,7 +14,8 @@ var Config = Config || (function() {
         edit_modal_id:"editModal",
         editTitle:"editTitle",
         editDescription:"editDescription",
-        editId:"editItemId"
+        editId:"editItemId",
+        language:"language"
     };
     return data;
 })();
