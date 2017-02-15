@@ -4,13 +4,12 @@
     var list = Model.list();
 
     var lang = document.getElementById(Config.language);
-    var modal = document.getElementById(Config.add_modal_id);
-    var modal = document.getElementById(Config.add_modal_id);
-    var editmodal = document.getElementById(Config.edit_modal_id);
+    var modal = "";
+    var editmodal = "";
     var containerID = document.getElementById(Config.containerID);
-    var frm = document.getElementById(Config.add_frm_id);
-    var add_form_error_log = document.getElementById(Config.add_form_error_log);
-    var edit_form_error_log = document.getElementById(Config.edit_form_error_log);
+    var frm = "";
+    var add_form_error_log = "";
+    var edit_form_error_log = "";
     var filter_text_id = document.getElementById(Config.filter_id);
 
     var APP = {
@@ -22,9 +21,7 @@
         openModal: openModal,
         hideModal: hideModal,
         statusChange: statusChange,
-        showDone: showDone,
-        showUndone: showUndone,
-        showAll: showAll,
+        showData: showData,
         dynamicSort: dynamicSort,
         editModal: editModal,
         edit: edit,
@@ -32,7 +29,11 @@
         validation: validation,
         ChangeLang: ChangeLang,
         resetForm: resetForm,
-        clearErrorLog: clearErrorLog
+        clearErrorLog: clearErrorLog,
+        loadModal: loadModal,
+        loadEditModal: loadEditModal,
+        loadStatus: loadStatus,
+        renderView: renderView
     };
 
 
@@ -40,7 +41,10 @@
     APP.init();
 
     function init() {
-        this.setList();
+        this.renderView();
+        setTimeout(function() {
+            APP.setList();
+        }, 1000);
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
@@ -59,13 +63,13 @@
         var statusVal = document.querySelector('input[name="' + Config.itemStatus + '"]:checked').value;
         switch (statusVal) {
             case 'all':
-                this.showAll();
+                this.showData('all');
                 break;
             case 'done':
-                this.showDone();
+                this.showData('done');
                 break;
             case 'undone':
-                this.showUndone();
+                this.showData('undone');
                 break;
         }
     }
@@ -131,7 +135,7 @@
                 this.list.splice(i, 1);
             }
             localStorage.setItem("list", JSON.stringify(this.list));
-            this.init();
+            this.setList();
         }
     }
 
@@ -169,30 +173,14 @@
             }
         }
         localStorage.setItem("list", JSON.stringify(this.list));
-        this.init();
+        this.setList();
     }
 
-    function showDone() {
+    function showData(type) {
         var filter_val = filter_text_id.value;
         var data = this.list;
         data.filterVal = filter_val;
-        var result = Model.showData(data, "done");
-        View.render(result, containerID);
-    }
-
-    function showUndone() {
-        var filter_val = filter_text_id.value;
-        var data = this.list;
-        data.filterVal = filter_val;
-        var result = Model.showData(data, "undone");
-        View.render(result, containerID);
-    }
-
-    function showAll() {
-        var filter_val = filter_text_id.value;
-        var data = this.list;
-        data.filterVal = filter_val;
-        var result = Model.showData(this.list, "all");
+        var result = Model.showData(data, type );
         View.render(result, containerID);
     }
 
@@ -256,9 +244,10 @@
                 title: title,
                 description: description
             }
+
             Model.editData(this.list, itemId, data);
             this.hideEditModal();
-            this.init();
+            this.setList();
         }
     }
 
@@ -292,6 +281,47 @@
                 }
             } else selector[i].innerHTML = Lang[model][lng];
         }
+    }
+
+    function loadModal(file) {
+        View.loadFile(file).then(function(data) {
+            console.log('Got data! Promise fulfilled.');
+            Helper.element("#list-container").insertAdjacentHTML('afterend', data);
+            modal = Helper.element("#" + Config.add_modal_id);
+            frm = Helper.element("#" + Config.add_frm_id);
+            add_form_error_log = Helper.element("#" + Config.add_form_error_log);
+        }, function(error) {
+            console.log('Promise rejected.');
+            console.log(error.message);
+        });
+    }
+
+    function loadEditModal(file) {
+        View.loadFile(file).then(function(data) {
+            console.log('Got data! Promise fulfilled.');
+            Helper.element("#list-container").insertAdjacentHTML('afterend', data);
+            editmodal = Helper.element("#" + Config.edit_modal_id);
+            edit_form_error_log = Helper.element("#" + Config.edit_form_error_log);
+        }, function(error) {
+            console.log('Promise rejected.');
+            console.log(error.message);
+        });
+    }
+
+    function loadStatus(file) {
+        View.loadFile(file).then(function(data) {
+            console.log('Got data! Promise fulfilled.');
+            Helper.prepend("#to_list", data);
+        }, function(error) {
+            console.log('Promise rejected.');
+            console.log(error.message);
+        });
+    }
+
+    function renderView() {
+        this.loadStatus("status");
+        this.loadModal("add_modal");
+        this.loadEditModal("edit_modal");
     }
 
 })(Model, View, Config, Message);

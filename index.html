@@ -34,22 +34,7 @@
                 </form>
                 <!-- content area -->
                 <div class="content">
-                    <!-- status changing content -->
-                    <div class="status_wrapper">
-                        <h2 class="lang" data-model='status'>Status</h2>
-                        <div class="status">
-                            <input type="radio" name="status" onchange="APP.setList();" value="all" checked="checked" />
-                            <label><span></span><b class="lang" data-model='filter_all'>All</b></label>
-                        </div>
-                        <div class="status">
-                            <input type="radio" name="status" onchange="APP.setList();" value="done" />
-                            <label><span></span><b class="lang" data-model='filter_done'>Done</b></label>
-                        </div>
-                        <div class="status">
-                            <input type="radio" name="status" onchange="APP.setList();" value="undone" />
-                            <label><span></span><b class="lang" data-model='filter_undone'>Undone</b></label>
-                        </div>
-                    </div>
+                    
                     <!--list will appear here -->
                     <ul id="to_list">
                     </ul>
@@ -60,55 +45,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Modal-->
-            <div id="myModal" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="close" onclick="APP.hideModal();return false;">&times;</span>
-                        <h2 class="lang" data-model='add_modal_heading'>Add new Item</h2>
-                    </div>
-                    <div class="modal-body">
-                        <div class="frm_container">
-                            <form name="add_frm" class="add_new_element" id="add_new_element" onsubmit="APP.addItem();return false;">
-                                <span id="error_log"></span>
-                                <label class="lang" data-model='add_modal_title'>Title</label>
-                                <input type="text" name="title" placeholder="Title" class="lang" data-model='add_modal_add_text' onkeyup="APP.validation(this);">
-                                <label class="lang" data-model='add_modal_description'>Description</label>
-                                <textarea name="description" class="lang" data-model='add_modal_textarea' rows="10" placeholder="Description" onkeyup="APP.validation(this);"></textarea>
-                                <input type="submit" name="submit" class="add_element submit_button lang" data-model='add_modal_add_button' value="Add">
-                                <input type="submit" name="cancel" class="cancel_modal submit_button lang" data-model="add_modal_cancel_button" onclick="APP.hideModal();return false;" value="Cancel">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- edit modal -->
-            <div id="editModal" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="close" onclick="APP.hideEditModal();return false;">&times;</span>
-                        <h2 class="lang" data-model='edit_modal_heading'>Edit Item</h2>
-                    </div>
-                    <div class="modal-body">
-                        <div class="frm_container">
-                            <form name="add_frm" class="add_new_element" id="add_new_element" onsubmit="APP.edit();return false;">
-                                <span id="edit_error_log"></span>
-                                <label class="lang" data-model='edit_modal_title'>Title</label>
-                                <input type="text" name="title" placeholder="Title" id="editTitle" class="lang" data-model='edit_modal_add_text' onkeyup="APP.validation(this);">
-                                <label class="lang" data-model='edit_modal_description'>Description</label>
-                                <textarea name="description" class="lang" data-model='edit_modal_textarea' rows="10" placeholder="Description" id="editDescription" onkeyup="APP.validation(this);"></textarea>
-                                <input type="hidden" id="editItemId" value="">
-                                <input type="submit" name="submit" class="add_element submit_button lang" data-model='edit_modal_add_button' value="Update">
-                                <input type="submit" name="cancel" class="cancel_modal submit_button lang" data-model='edit_modal_cancel_button' onclick="APP.hideEditModal();return false;" value="Cancel">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+    <script type="text/javascript" src="js/helper/helper.js"></script>
     <script type="text/javascript" src="js/controller/data/lang.js"></script>
     <script type="text/javascript" src="js/controller/data/data.js"></script>
     <script type="text/javascript" src="js/controller/data/config.js"></script>

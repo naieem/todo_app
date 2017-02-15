@@ -1,0 +1,15 @@
+<div class="status_wrapper">
+    <h2 class="lang" data-model='status'>Status</h2>
+    <div class="status">
+        <input type="radio" name="status" onchange="APP.setList();" value="all" checked="checked" />
+        <label><span></span><b class="lang" data-model='filter_all'>All</b></label>
+    </div>
+    <div class="status">
+        <input type="radio" name="status" onchange="APP.setList();" value="done" />
+        <label><span></span><b class="lang" data-model='filter_done'>Done</b></label>
+    </div>
+    <div class="status">
+        <input type="radio" name="status" onchange="APP.setList();" value="undone" />
+        <label><span></span><b class="lang" data-model='filter_undone'>Undone</b></label>
+    </div>
+</div>
