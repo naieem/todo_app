@@ -42,11 +42,9 @@ var View = View || (function() {
     function loadFile(name) {
         if (window.Promise) {
             console.log('Promise found');
-
             return new Promise(function(resolve, reject) {
                 var request = new XMLHttpRequest();
-
-                request.open('GET', 'template/'+name+'.html');
+                request.open('GET', 'template/' + name + '.html');
                 request.onload = function() {
                     if (request.status == 200) {
                         resolve(request.response); // we got data here, so resolve the Promise

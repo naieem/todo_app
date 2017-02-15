@@ -5,7 +5,9 @@ var Model = Model || (function() {
         list: getInitialData,
         showData: showData,
         addData: addData,
-        editData: editData
+        editData: editData,
+        deleteData: deleteData,
+        updateStatusChange: updateStatusChange
     }
 
     function getInitialData() {
@@ -156,5 +158,28 @@ var Model = Model || (function() {
         localStorage.setItem("list", JSON.stringify(data));
     }
 
+    function deleteData(data, id) {
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].id == id) {
+                data.splice(i, 1);
+            }
+            localStorage.setItem("list", JSON.stringify(data));
+        }
+        return Helper.promise(true, data);
+    }
+
+    function updateStatusChange(checkbox,data,id) {
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].id == id) {
+                if (checkbox.checked) {
+                    data[i].done = true;
+                } else {
+                    data[i].done = false;
+                }
+            }
+        }
+        localStorage.setItem("list", JSON.stringify(data));
+        return Helper.promise(true, "success");
+    }
 
 })();

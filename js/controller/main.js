@@ -30,10 +30,9 @@
         ChangeLang: ChangeLang,
         resetForm: resetForm,
         clearErrorLog: clearErrorLog,
-        loadModal: loadModal,
-        loadEditModal: loadEditModal,
-        loadStatus: loadStatus,
-        renderView: renderView
+        renderView: renderView,
+        loadVariables: loadVariables,
+        domReady: domReady
     };
 
 
@@ -42,9 +41,6 @@
 
     function init() {
         this.renderView();
-        setTimeout(function() {
-            APP.setList();
-        }, 1000);
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
@@ -123,20 +119,17 @@
             }
             Model.addData(this.list, data);
             this.setList();
-            frm.reset();
             this.hideModal('add');
         }
-
     }
 
     function del(id) {
-        for (var i = 0; i < this.list.length; i++) {
-            if (this.list[i].id == id) {
-                this.list.splice(i, 1);
-            }
-            localStorage.setItem("list", JSON.stringify(this.list));
-            this.setList();
-        }
+        Model.deleteData(this.list, id).then(function(data) {
+            console.log(data);
+            APP.setList();
+        }, function(error) {
+            console.log(error);
+        });
     }
 
     function openModal() {
@@ -158,29 +151,25 @@
     }
 
     function statusChange(checkbox, id) {
-        if (checkbox.checked) {
-            console.log(id);
-        } else {
-            console.log('unchecked');
-        }
-        for (var i = 0; i < this.list.length; i++) {
-            if (this.list[i].id == id) {
-                if (checkbox.checked) {
-                    this.list[i].done = true;
-                } else {
-                    this.list[i].done = false;
-                }
+        // if (checkbox.checked) {
+        //     console.log(id);
+        // } else {
+        //     console.log('unchecked');
+        // }
+        Model.updateStatusChange(checkbox, this.list, id).then(function(data) {
+            if (data == 'success') {
+                APP.setList();
             }
-        }
-        localStorage.setItem("list", JSON.stringify(this.list));
-        this.setList();
+        }, function(error) {
+            console.log(error);
+        });
     }
 
     function showData(type) {
         var filter_val = filter_text_id.value;
         var data = this.list;
         data.filterVal = filter_val;
-        var result = Model.showData(data, type );
+        var result = Model.showData(data, type);
         View.render(result, containerID);
     }
 
@@ -244,7 +233,6 @@
                 title: title,
                 description: description
             }
-
             Model.editData(this.list, itemId, data);
             this.hideEditModal();
             this.setList();
@@ -283,45 +271,51 @@
         }
     }
 
-    function loadModal(file) {
-        View.loadFile(file).then(function(data) {
-            console.log('Got data! Promise fulfilled.');
-            Helper.element("#list-container").insertAdjacentHTML('afterend', data);
-            modal = Helper.element("#" + Config.add_modal_id);
-            frm = Helper.element("#" + Config.add_frm_id);
-            add_form_error_log = Helper.element("#" + Config.add_form_error_log);
-        }, function(error) {
-            console.log('Promise rejected.');
-            console.log(error.message);
-        });
-    }
+    function domReady(file, type, element) {
+        if (type == 'append') {
+            return View.loadFile(file)
+                .then(function(data) {
+                    console.log('Got data! Promise fulfilled.');
+                    Helper.append(element, data);
+                }, function(error) {
+                    console.log('Promise rejected.');
+                    console.log(error);
+                });
+        }
+        if (type == 'prepend') {
+            return View.loadFile(file)
+                .then(function(data) {
+                    console.log('Got data! Promise fulfilled.');
+                    Helper.prepend(element, data);
+                }, function(error) {
+                    console.log('Promise rejected.');
+                    console.log(error);
+                });
+        }
 
-    function loadEditModal(file) {
-        View.loadFile(file).then(function(data) {
-            console.log('Got data! Promise fulfilled.');
-            Helper.element("#list-container").insertAdjacentHTML('afterend', data);
-            editmodal = Helper.element("#" + Config.edit_modal_id);
-            edit_form_error_log = Helper.element("#" + Config.edit_form_error_log);
-        }, function(error) {
-            console.log('Promise rejected.');
-            console.log(error.message);
-        });
-    }
-
-    function loadStatus(file) {
-        View.loadFile(file).then(function(data) {
-            console.log('Got data! Promise fulfilled.');
-            Helper.prepend("#to_list", data);
-        }, function(error) {
-            console.log('Promise rejected.');
-            console.log(error.message);
-        });
     }
 
     function renderView() {
-        this.loadStatus("status");
-        this.loadModal("add_modal");
-        this.loadEditModal("edit_modal");
+        return new Promise(function(resolve, reject) {
+            APP.domReady('status', 'prepend', '#to_list').then(function() {
+                APP.domReady('edit_modal', 'append', '#list-container').then(function(data) {
+                    APP.domReady("add_modal", 'append', '#list-container').then(function() {
+                        APP.loadVariables();
+                        APP.setList();
+                        resolve("success");
+                    });
+                })
+            });
+
+
+        });
     }
 
+    function loadVariables() {
+        modal = Helper.element("#" + Config.add_modal_id);
+        frm = Helper.element("#" + Config.add_frm_id);
+        add_form_error_log = Helper.element("#" + Config.add_form_error_log);
+        editmodal = Helper.element("#" + Config.edit_modal_id);
+        edit_form_error_log = Helper.element("#" + Config.edit_form_error_log);
+    }
 })(Model, View, Config, Message);
