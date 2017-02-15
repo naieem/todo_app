@@ -3,7 +3,7 @@ var Helper = Helper || (function() {
     return {
         element: elem,
         prepend: prepend,
-        append:append,
+        append: append,
         promise: promise
     };
 
@@ -14,7 +14,8 @@ var Helper = Helper || (function() {
     function prepend(elm, data) {
         return this.element(elm).insertAdjacentHTML('beforebegin', data);
     }
-    function append(elem,data){
+
+    function append(elem, data) {
         return this.element(elem).insertAdjacentHTML('afterend', data);
     }
 

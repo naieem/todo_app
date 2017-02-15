@@ -318,4 +318,4 @@
         editmodal = Helper.element("#" + Config.edit_modal_id);
         edit_form_error_log = Helper.element("#" + Config.edit_form_error_log);
     }
-})(Model, View, Config, Message);
+})(Model, View, Config, Message, Helper);
